@@ -3,7 +3,7 @@
     <div class="w3-col m7">
       <div class="w3-row-padding">
         <div class="w3-col m12">
-          <form>
+          <form [formGroup]="loginForm">
             <div class="w3-card w3-round w3-white">
               <div
                 class="w3-container w3-padding"
@@ -13,15 +13,16 @@
                 <p>
                   UserName:
                 </p>
-                <input class="w3-border w3-padding" />
+                <input class="w3-border w3-padding" formControlName="email" />
                 <p>
                   Password
                 </p>
-                <input class="w3-border w3-padding" />
+                <input class="w3-border w3-padding" formControlName="password" />
                 <div>
                   <button
                     type="button"
                     class="w3-button w3-theme"
+                    (click)="login()"
                     style="
                     width: 93%;
                     margin-top: 10%;"

@@ -9,6 +9,8 @@ import { TweetComponent } from './tweets/tweet/tweet.component';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { TweetDetailsComponent } from './tweets/tweet/tweet-details/tweet-details.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,7 @@ import { TweetDetailsComponent } from './tweets/tweet/tweet-details/tweet-detail
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,ReactiveFormsModule,FormsModule,HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
