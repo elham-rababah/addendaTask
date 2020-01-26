@@ -40,23 +40,18 @@ export class LoginComponent implements OnInit {
   //handel validation and send data to the service
   login() {
     this.errorMessages = {};
-    debugger;
     //send to the service to login
     if (Object.keys(this.errorMessages).length === 0) {
       // this.loggedIn = !this.loggedIn;
       const payload =  new loginModel(this.loginForm.value.email, this.loginForm.value.password);
 
-      this.auth.login(this.loginForm.value).subscribe(
+      this.auth.login(payload).subscribe(
         (res: any) => {
           // this.loggedIn = false;
           localStorage.setItem("session", JSON.stringify(res));
           this.router.navigateByUrl("/tweets");
         },
         error => {
-          //this.errorMessages["backEndError"] = error.error.error_description;
-          // this.errorMessages["backEndError"] =
-            // "البريد الإلكتروني أو كلمة المرور التي أدخلتها غير صحيحة  ";
-          // this.loggedIn = false;
           console.log(error);
         }
       );

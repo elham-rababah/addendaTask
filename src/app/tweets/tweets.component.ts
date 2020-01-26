@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {TweetsService} from '../services/tweets.service';
+import {TweetModel} from './tweet.model'
 
 @Component({
   selector: 'app-tweets',
@@ -6,10 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tweets.component.scss']
 })
 export class TweetsComponent implements OnInit {
-
-  constructor() { }
+  tweets:Array<TweetModel>;
+  tweet:TweetModel;
+  constructor(private tweetsService:TweetsService) { }
 
   ngOnInit() {
+    this.getAllTweets()
   }
+  getAllTweets(){
+    this.tweetsService.getAllTweets().subscribe((res:Array<TweetModel>) =>{
+      this.tweets = res;
+      console.log(this.tweets)
+      this.tweet = res[0]
+    },error=>{
+      console.log(error)
+    })
+  }
+
 
 }

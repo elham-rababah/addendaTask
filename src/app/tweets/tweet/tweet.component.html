@@ -1,24 +1,22 @@
 <div class="w3-container w3-card w3-white w3-round w3-margin">
   <br />
-  <img
-    src="{{ twite.user.profile_background_image_url_https }}"
+  <img *ngIf="tweet.user.profile_background_image_url_https"
+    src="{{ tweet.user.profile_background_image_url_https }}"
     alt="Avatar"
     class="w3-left w3-circle w3-margin-right"
     style="width:60px"
   />
-  <span class="w3-right w3-opacity">{{ twite.user.created_at }}</span>
-  <h4>{{ twite.user.name }}</h4>
+  <span class="w3-right w3-opacity">{{ tweet.user.created_at }}</span>
+  <h4>{{ tweet.user.name }}</h4>
   <br />
-  <h4>followers {{ twite.user.followers_count }}</h4>
+  <h4>followers {{ tweet.user.followers_count }}</h4>
+  <h4> tweet ID {{ tweet.id }}</h4>
   <br />
   <hr class="w3-clear" />
   <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat.
+      {{ tweet.user.description }}
   </p>
-  <div class="w3-row-padding" style="margin:0 -16px">
+  <!-- <div class="w3-row-padding" style="margin:0 -16px">
     <div class="w3-half">
       <img
         src="/w3images/lights.jpg"
@@ -35,7 +33,7 @@
         class="w3-margin-bottom"
       />
     </div>
-  </div>
+  </div> -->
 
   <button
     type="button"
@@ -46,4 +44,4 @@
     <i class="fa fa-comment"></i> details
   </button>
 </div>
-<app-tweet-details></app-tweet-details>
+<app-tweet-details  [selecteTweet]="tweet" ></app-tweet-details>

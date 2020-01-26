@@ -1,9 +1,7 @@
-
-
-        <!-- Middle Column -->
-        <div class="w3-col m7">
-            <app-tweet></app-tweet>
-          <!-- End Middle Column -->
-        </div>
-
-       
+<!-- Middle Column -->
+<div class="w3-col m7">
+  <div *ngFor="let tweet of tweets">
+    <app-tweet [tweet]="tweet" ></app-tweet>
+  </div>
+  <!-- End Middle Column -->
+</div>
