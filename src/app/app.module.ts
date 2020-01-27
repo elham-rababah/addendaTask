@@ -13,6 +13,17 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthInterceptorService } from './services/auth.interceptor';
 
+
+
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+
+import { appReducers } from './store/reducers/app.reducers';
+import { UserEffects } from './store/effects/user.effects';
+import { environment } from '../environments/environment';
+  
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +40,10 @@ import { AuthInterceptorService } from './services/auth.interceptor';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([UserEffects]),
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
    
   ],
   providers: [{
