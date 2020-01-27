@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     var password = null;
 
     this.loginForm = new FormGroup({
-      email: new FormControl(email, [Validators.required]),
+      email: new FormControl(email, [Validators.required,Validators.email]),
       password: new FormControl(password, [Validators.required])
     });
   }
@@ -40,8 +40,10 @@ export class LoginComponent implements OnInit {
   //handel validation and send data to the service
   login() {
     this.errorMessages = {};
+    console.log(this.loginForm);
+    this.loginFormValidation();
     //send to the service to login
-    if (Object.keys(this.errorMessages).length === 0) {
+    if (!(this.loginForm.status=='INVALID')) {
       // this.loggedIn = !this.loggedIn;
       const payload =  new loginModel(this.loginForm.value.email, this.loginForm.value.password);
 
@@ -52,11 +54,29 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl("/tweets");
         },
         error => {
+          alert("Some Thing Wrong happend. please see the logs")
           console.log(error);
         }
       );
     } else {
       // this.loggedIn = false;
+    }
+  }
+
+  loginFormValidation(){
+    // [disabled]="loginForm.status=='INVALID'"
+
+    const form = this.loginForm
+    if(form.controls.email.errors){
+      if(form.controls.email.errors.email){
+        this.errorMessages['email'] = "Invalid email"
+      } else {
+        this.errorMessages['email'] = "required email"
+      }
+      if(form.controls.password.errors){
+        this.errorMessages['password'] = "required password"
+      }
+      
     }
   }
 }

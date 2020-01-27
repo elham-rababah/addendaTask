@@ -21,7 +21,8 @@ export class TweetsComponent implements OnInit {
       console.log(this.tweets)
       this.tweet = res[0]
     },error=>{
-      console.log(error)
+      alert("Some Thing Wrong happend. please see the logs")
+      console.log(error);
     })
   }
 
