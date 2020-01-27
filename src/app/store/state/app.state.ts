@@ -1,7 +1,7 @@
-import { initializeUserState } from "./user.state";
+import { initializeTweetsState } from "./tweets.state";
 
 export const initialAppState = {
-    user: initializeUserState,
+    tweet: initializeTweetsState,
   };
   
   export function getInitialState() {

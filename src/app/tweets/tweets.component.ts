@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {TweetsService} from '../services/tweets.service';
 import {TweetModel} from './tweet.model'
 import { Store, select } from '@ngrx/store';
-import { selectUserList } from '../store/selectors/user.selectors';
-import { GetUser } from '../store/actions/user.action';
+import { selectTweetsList } from '../store/selectors/tweets.selectors';
+import { GetTweets } from '../store/actions/tweets.action';
 
 @Component({
   selector: 'app-tweets',
@@ -14,12 +14,12 @@ export class TweetsComponent implements OnInit {
   tweets:Array<TweetModel>;
   tweet:TweetModel;
   constructor(private tweetsService:TweetsService,private _store: Store<any>) { }
-  users$ = this._store.pipe(select(selectUserList));
+  tweets$ = this._store.pipe(select(selectTweetsList));
 
   ngOnInit() {
     console.log(this._store)
-    this._store.dispatch(new GetUser());
-    this.getAllTweets()
+    this._store.dispatch(new GetTweets());
+    // this.getAllTweets()
   }
   getAllTweets(){
     this.tweetsService.getAllTweets().subscribe((res:Array<TweetModel>) =>{

@@ -21,7 +21,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { appReducers } from './store/reducers/app.reducers';
-import { UserEffects } from './store/effects/user.effects';
+import { TweetsEffects } from './store/effects/tweets.effects';
 import { environment } from '../environments/environment';
   
 @NgModule({
@@ -41,7 +41,7 @@ import { environment } from '../environments/environment';
     FormsModule,
     HttpClientModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([UserEffects]),
+    EffectsModule.forRoot([TweetsEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
    

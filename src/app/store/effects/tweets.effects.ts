@@ -4,16 +4,16 @@ import { Store, select } from "@ngrx/store";
 import { of } from "rxjs";
 import { switchMap, map, withLatestFrom } from "rxjs/operators";
 
-import { EUserActions, GetUser, setUserSuccess } from "../actions/user.action";
+import { ETweetsActions, GetTweets, setTweets } from "../actions/tweets.action";
 import { TweetsService } from "../../services/tweets.service";
 
 @Injectable()
-export class UserEffects {
+export class TweetsEffects {
   @Effect()
-  getUser$ = this._actions$.pipe(
-    ofType<any>(EUserActions.GetUser),
+  getTweets$ = this._actions$.pipe(
+    ofType<any>(ETweetsActions.GetTweets),
     switchMap(() => this.tweetsService.getAllTweets()),
-    switchMap((userHttp) => of(new setUserSuccess(userHttp)))
+    switchMap((tweetsHttp) => of(new setTweets(tweetsHttp)))
   );
 
   constructor(

@@ -1,7 +1,6 @@
 <!-- Middle Column -->
-<!-- {{(users$ | async )| json}} -->
-<div class="w3-col m7">
-  <div *ngFor="let tweet of (users$ | async )">
+  <div class="w3-col m7">
+  <div *ngFor="let tweet of (tweets$  | async )">
     <app-tweet [tweet]="tweet" ></app-tweet>
   </div>
   <!-- End Middle Column -->
